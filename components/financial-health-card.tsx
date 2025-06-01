@@ -10,14 +10,14 @@ interface FinancialHealthCardProps {
   progress: number
 }
 
-export function FinancialHealthCard({ score, progress }: FinancialHealthCardProps) {
-  const getScoreColor = () => {
+export function FinancialHealthCard({ score, progress }: FinancialHealthCardProps): React.ReactElement {
+  const getScoreColor = (): string => {
     if (score >= 80) return "text-green-600";
     if (score >= 60) return "text-amber-600";
     return "text-red-600";
   };
 
-  const getScoreText = () => {
+  const getScoreText = (): string => {
     if (score >= 80) return "Excellent";
     if (score >= 60) return "Good";
     if (score >= 40) return "Fair";

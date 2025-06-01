@@ -47,7 +47,7 @@ const menuItems = [
   },
 ];
 
-export function AppSidebar({ activeView, setActiveView }: AppSidebarProps) {
+export function AppSidebar({ activeView, setActiveView }: AppSidebarProps): React.ReactElement {
   const { state } = useAppContext();
 
   return (

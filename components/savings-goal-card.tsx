@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Confetti } from "@/components/confetti";
 import { AnimatedProgress } from "@/components/animated-progress";
 import { AnimatedCounter } from "@/components/animated-counter";
-import { useAppContext } from "@/src/context/AppContext";
+
 
 interface SavingsGoalCardProps {
   title: string
@@ -19,13 +19,13 @@ interface SavingsGoalCardProps {
   icon: React.ReactNode
 }
 
-export function SavingsGoalCard({ title, target, current, progress, daysLeft, icon }: SavingsGoalCardProps) {
-  const { updateSavingsGoal } = useAppContext();
+export function SavingsGoalCard({ title, target, current, progress, daysLeft, icon }: SavingsGoalCardProps): React.ReactElement {
+
   const [showConfetti, setShowConfetti] = useState(false);
   const [currentAmount, setCurrentAmount] = useState(current);
   const [currentProgress, setCurrentProgress] = useState(progress);
 
-  const handleAddFunds = () => {
+  const handleAddFunds = (): void => {
     const amount = Number(window.prompt("Enter amount to add:", "100"));
     if (!isNaN(amount) && amount > 0) {
       const newAmount = currentAmount + amount;

@@ -78,7 +78,7 @@ function appReducer(state: AppState, action: AppAction): AppState {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-export function AppProvider({ children }: { children: React.ReactNode }) {
+export function AppProvider({ children }: { children: React.ReactNode }): React.ReactElement {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
   // Action creators
@@ -128,13 +128,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   // Load initial data
   useEffect(() => {
-    const loadData = async () => {
+    const loadData = async (): Promise<void> => {
       try {
         setLoading(true);
         // Simulate API call with more realistic timing
         await new Promise(resolve => setTimeout(resolve, 1500));
         dispatch({ type: "LOAD_INITIAL_DATA", payload: mockData });
       } catch (error) {
+        console.error("Failed to load data:", error);
         setError("Failed to load data");
       } finally {
         setLoading(false);
@@ -165,7 +166,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function useAppContext() {
+export function useAppContext(): AppContextType {
   const context = useContext(AppContext);
   if (context === undefined) {
     throw new Error("useAppContext must be used within an AppProvider");

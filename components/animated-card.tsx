@@ -18,7 +18,7 @@ export function AnimatedCard({
   delay = 0, 
   hover = true,
   startOnView = true 
-}: AnimatedCardProps) {
+}: AnimatedCardProps): React.ReactElement {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(!startOnView);
   const elementRef = useRef<HTMLDivElement>(null);
@@ -39,7 +39,7 @@ export function AnimatedCard({
       observer.observe(elementRef.current);
     }
 
-    return () => observer.disconnect();
+    return (): void => observer.disconnect();
   }, [startOnView]);
 
   return (

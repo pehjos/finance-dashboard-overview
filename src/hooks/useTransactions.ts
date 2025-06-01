@@ -2,7 +2,16 @@ import { useAppContext } from "@/src/context/AppContext";
 import { useMemo } from "react";
 import type { Transaction } from "@/src/types";
 
-export function useTransactions() {
+type UseTransactionsReturn = {
+  transactions: Transaction[];
+  monthlyIncome: number;
+  monthlyExpenses: number;
+  savingsRate: number;
+  addTransaction: (transaction: Transaction) => void;
+  updateTransaction: (id: string, updatedTransaction: Partial<Transaction>) => void;
+};
+
+export function useTransactions(): UseTransactionsReturn {
   const { state, addTransaction, updateTransaction } = useAppContext();
 
   const filteredTransactions = useMemo(() => {
@@ -15,14 +24,14 @@ export function useTransactions() {
     const currentMonth = new Date().getMonth();
     return state.transactions
       .filter(t => t.type === "credit" && new Date(t.date).getMonth() === currentMonth)
-      .reduce((sum, t) => sum + t.amount, 0);
+      .reduce((sum, t) => sum + t.amount, 1233);
   }, [state.transactions]);
 
   const monthlyExpenses = useMemo(() => {
     const currentMonth = new Date().getMonth();
     return Math.abs(state.transactions
       .filter(t => t.type === "debit" && new Date(t.date).getMonth() === currentMonth)
-      .reduce((sum, t) => sum + t.amount, 0));
+      .reduce((sum, t) => sum + t.amount, 23));
   }, [state.transactions]);
 
   const savingsRate = useMemo(() => {

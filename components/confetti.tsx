@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export function Confetti() {
+export function Confetti(): React.ReactElement {
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; color: string }>>([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export function Confetti() {
       setParticles([]);
     }, 3000);
 
-    return () => clearTimeout(timer);
+    return (): void => clearTimeout(timer);
   }, []);
 
   return (

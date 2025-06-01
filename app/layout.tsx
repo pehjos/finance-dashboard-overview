@@ -13,10 +13,10 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
-}>) {
+}>): React.ReactElement {
   return (
     <html lang="en">
-    <body suppressHydrationWarning={true}>{children}</body>
+    <body>{children}</body>
     </html>
   );
 }

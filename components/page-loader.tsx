@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { LoadingSpinner } from "@/components/loading-spinner";
 
 interface PageLoaderProps {
@@ -7,7 +8,7 @@ interface PageLoaderProps {
   fullScreen?: boolean
 }
 
-export function PageLoader({ text = "Loading...", fullScreen = false }: PageLoaderProps) {
+export function PageLoader({ text = "Loading...", fullScreen = false }: PageLoaderProps): React.ReactElement {
   const containerClass = fullScreen 
     ? "fixed inset-0 bg-white/80 backdrop-blur-sm z-50" 
     : "absolute inset-0 bg-white/80 backdrop-blur-sm";

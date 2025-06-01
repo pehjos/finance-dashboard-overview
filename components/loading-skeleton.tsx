@@ -12,8 +12,8 @@ export function LoadingSkeleton({
   lines = 1, 
   type = "text",
   count = 1 
-}: LoadingSkeletonProps) {
-  const renderSkeleton = () => {
+}: LoadingSkeletonProps): React.ReactNode {
+  const renderSkeleton = (): React.ReactNode => {
     switch (type) {
       case "card":
         return (

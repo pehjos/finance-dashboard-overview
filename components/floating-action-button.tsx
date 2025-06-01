@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus, Send, Download, CreditCard, X } from "lucide-react";
 
-export function FloatingActionButton() {
+export function FloatingActionButton(): React.ReactElement {
   const [isOpen, setIsOpen] = useState(false);
 
   const actions = [

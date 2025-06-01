@@ -11,14 +11,14 @@ const data = [
   { name: "Jun", income: 12500, expenses: 8750 },
 ];
 
-export function IncomeExpenseChart() {
+export function IncomeExpenseChart(): React.ReactElement {
   const [animateChart, setAnimateChart] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimateChart(true);
     }, 300);
-    return () => clearTimeout(timer);
+    return (): void => { clearTimeout(timer); };
   }, []);
 
   const maxValue = Math.max(...data.flatMap((d) => [d.income, d.expenses]));

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 interface AnimatedCounterProps {
   end: number
@@ -20,7 +20,7 @@ export function AnimatedCounter({
   decimals = 0,
   className = "",
   startOnView = true,
-}: AnimatedCounterProps) {
+}: AnimatedCounterProps): React.ReactElement {
   const [count, setCount] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
   const elementRef = useRef<HTMLSpanElement>(null);
@@ -42,7 +42,7 @@ export function AnimatedCounter({
       observer.observe(elementRef.current);
     }
 
-    return () => observer.disconnect();
+    return (): void => observer.disconnect();
   }, [hasAnimated, startOnView]);
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export function AnimatedCounter({
     let startTime: number;
     let animationFrame: number;
 
-    const animate = (currentTime: number) => {
+    const animate = (currentTime: number): void => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
 
@@ -71,7 +71,7 @@ export function AnimatedCounter({
 
     animationFrame = requestAnimationFrame(animate);
 
-    return () => {
+    return (): void => {
       if (animationFrame) {
         cancelAnimationFrame(animationFrame);
       }

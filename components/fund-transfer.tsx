@@ -18,7 +18,7 @@ import { LoadingSpinner } from "@/components/loading-spinner";
 type TransferStep = "recipient" | "amount" | "confirmation" | "result"
 type TransferTab = "all" | "favorites" | "recent"
 
-export function FundTransfer() {
+export function FundTransfer(): React.ReactElement {
   const { addTransaction } = useAppContext();
   const { contacts, favoriteContacts, recentContacts } = useContacts();
   const [currentStep, setCurrentStep] = useState<TransferStep>("recipient");
@@ -32,7 +32,7 @@ export function FundTransfer() {
   const [isLoading, setIsLoading] = useState(false);
   const [suggestedAmounts] = useState([50, 100, 200, 500]);
 
-  const getFilteredContacts = () => {
+  const getFilteredContacts = (): Contact[] => {
     let contactList = contacts;
     
     if (activeTab === "favorites") {
@@ -50,18 +50,18 @@ export function FundTransfer() {
 
   const filteredContacts = getFilteredContacts();
 
-  const handleRecipientSelect = (contact: Contact) => {
+  const handleRecipientSelect = (contact: Contact): void => {
     setSelectedRecipient(contact);
     setCurrentStep("amount");
   };
 
-  const handleAmountSubmit = () => {
+  const handleAmountSubmit = (): void => {
     if (amount && Number.parseFloat(amount) > 0) {
       setCurrentStep("confirmation");
     }
   };
 
-  const handleTransferConfirm = () => {
+  const handleTransferConfirm = (): void => {
     setIsLoading(true);
     setCurrentStep("result");
     
@@ -89,7 +89,7 @@ export function FundTransfer() {
     }, 2000);
   };
 
-  const resetTransfer = () => {
+  const resetTransfer = (): void => {
     setCurrentStep("recipient");
     setSelectedRecipient(null);
     setAmount("");
@@ -100,7 +100,7 @@ export function FundTransfer() {
     setShowConfetti(false);
   };
 
-  const renderStepIndicator = () => {
+  const renderStepIndicator = (): React.ReactElement => {
     const steps = [
       { id: "recipient", label: "Recipient", number: 1 },
       { id: "amount", label: "Amount", number: 2 },
@@ -109,9 +109,9 @@ export function FundTransfer() {
     ];
 
     return (
-      <div className="flex items-center justify-center mb-8">
+      <div className="md:flex items-center justify-center mb-8">
         {steps.map((step, index) => (
-          <div key={step.id} className="flex items-center">
+          <div key={step.id} className="md:flex gap-3  items-center">
             <div
               className={`flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all ${
                 currentStep === step.id
@@ -137,7 +137,7 @@ export function FundTransfer() {
     );
   };
 
-  const renderRecipientStep = () => (
+  const renderRecipientStep = (): React.ReactElement => (
     <AnimatedCard className="max-w-2xl mx-auto">
       {showConfetti && <Confetti />}
       <CardHeader>
@@ -216,7 +216,7 @@ export function FundTransfer() {
     </AnimatedCard>
   );
 
-  const renderAmountStep = () => (
+  const renderAmountStep = (): React.ReactElement => (
     <AnimatedCard className="max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle>Enter Amount</CardTitle>
@@ -306,7 +306,7 @@ export function FundTransfer() {
     </AnimatedCard>
   );
 
-  const renderConfirmationStep = () => (
+  const renderConfirmationStep = (): React.ReactElement => (
     <AnimatedCard className="max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle>Confirm Transfer</CardTitle>
@@ -366,7 +366,7 @@ export function FundTransfer() {
     </AnimatedCard>
   );
 
-  const renderResultStep = () => (
+  const renderResultStep = (): React.ReactElement => (
     <AnimatedCard className="max-w-2xl mx-auto">
       <CardContent className="pt-6">
         {isLoading || transferResult === null ? (

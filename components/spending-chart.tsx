@@ -13,17 +13,17 @@ interface SpendingChartProps {
   categories: Category[]
 }
 
-export function SpendingChart({ categories }: SpendingChartProps) {
+export function SpendingChart({ categories }: SpendingChartProps): React.ReactElement {
   const [animateChart, setAnimateChart] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimateChart(true);
     }, 300);
-    return () => clearTimeout(timer);
+    return (): void => clearTimeout(timer);
   }, []);
 
-  const getColorClass = (color: string) => {
+  const getColorClass = (color: string): string => {
     const colorMap: { [key: string]: string } = {
       "bg-blue-500": "bg-blue-500",
       "bg-green-500": "bg-green-500",
@@ -69,7 +69,7 @@ export function SpendingChart({ categories }: SpendingChartProps) {
       </div>
 
       <div className="space-y-2 mt-4">
-        {categories.map((category, index) => (
+        {categories.map((category) => (
           <div key={category.name} className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className={`w-3 h-3 rounded ${getColorClass(category.color)}`}></div>

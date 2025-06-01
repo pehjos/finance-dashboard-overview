@@ -1,6 +1,7 @@
 "use client";
+import * as React from "react";
 
-export function ChartSkeleton({ className = "" }: { className?: string }) {
+export function ChartSkeleton({ className = "" }: { className?: string }): React.ReactElement {
   return (
     <div className={`border rounded-lg p-6 ${className}`}>
       {/* Chart Header */}

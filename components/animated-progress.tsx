@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 interface AnimatedProgressProps {
   value: number
@@ -20,7 +20,7 @@ export function AnimatedProgress({
   showValue = false,
   duration = 1500,
   startOnView = true,
-}: AnimatedProgressProps) {
+}: AnimatedProgressProps): React.ReactElement {
   const [currentValue, setCurrentValue] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
@@ -44,7 +44,7 @@ export function AnimatedProgress({
       observer.observe(elementRef.current);
     }
 
-    return () => observer.disconnect();
+    return (): void => observer.disconnect();
   }, [value, hasAnimated, startOnView]);
 
   useEffect(() => {

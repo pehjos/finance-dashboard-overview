@@ -15,10 +15,12 @@ interface NotificationCenterProps {
   onClose: () => void
 }
 
-export function NotificationCenter({ notifications, onClose }: NotificationCenterProps) {
+import React from "react";
+
+export function NotificationCenter({ notifications, onClose }: NotificationCenterProps): React.ReactElement {
   const { markNotificationAsRead } = useAppContext();
 
-  const getIcon = (type: string) => {
+  const getIcon = (type: string): React.ReactElement => {
     switch (type) {
       case "warning":
         return <AlertTriangle className="h-5 w-5 text-amber-500" />;
@@ -31,7 +33,7 @@ export function NotificationCenter({ notifications, onClose }: NotificationCente
     }
   };
 
-  const getBackgroundColor = (type: string) => {
+  const getBackgroundColor = (type: string): string => {
     switch (type) {
       case "warning":
         return "bg-amber-50";

@@ -1,6 +1,5 @@
 "use client";
-
-import { useState, useEffect } from "react";
+import  React,{ useState,  } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,7 +15,7 @@ import { useAppContext } from "@/src/context/AppContext";
 import { useTransactions } from "@/src/hooks/useTransactions";
 import type { Transaction } from "@/src/types";
 
-export function TransactionHistory() {
+export function TransactionHistory(): React.ReactElement {
   const { state } = useAppContext();
   const { transactions } = useTransactions();
   const [searchTerm, setSearchTerm] = useState("");
@@ -59,7 +58,7 @@ export function TransactionHistory() {
   const currentItems = filteredTransactions.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredTransactions.length / itemsPerPage);
 
-  const getStatusBadge = (status: string) => {
+  const getStatusBadge = (status: string):React.ReactElement => {
     switch (status) {
       case "completed":
         return <Badge className="bg-green-100 text-green-800 hover:bg-green-100">Completed</Badge>;
@@ -72,7 +71,7 @@ export function TransactionHistory() {
     }
   };
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString: string): string => {
     return new Date(dateString).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",

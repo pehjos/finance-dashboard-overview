@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight, ArrowDownLeft, Send, Download, Eye, EyeOff, TrendingUp, TrendingDown, Info, Target, Award, Bell } from "lucide-react";
+import { ArrowUpRight, ArrowDownLeft, Send, Download, Eye, EyeOff, TrendingUp, TrendingDown, Info, Target, Award, } from "lucide-react";
 import { SpendingChart } from "@/components/spending-chart";
 import { IncomeExpenseChart } from "@/components/income-expense-chart";
 import { SavingsGoalCard } from "@/components/savings-goal-card";
 import { FinancialHealthCard } from "@/components/financial-health-card";
-import { NotificationCenter } from "@/components/notification-center";
+
 import { AnimatedCounter } from "@/components/animated-counter";
 import { AnimatedProgress } from "@/components/animated-progress";
 import { AnimatedCard } from "@/components/animated-card";
@@ -20,14 +20,13 @@ import { LoadingSkeleton } from "@/components/loading-skeleton";
 import { useAppContext } from "@/src/context/AppContext";
 import { useTransactions } from "@/src/hooks/useTransactions";
 
-export function DashboardOverview() {
-  const { state, toggleBalanceVisibility, markNotificationAsRead } = useAppContext();
+export function DashboardOverview(): React.ReactElement {
+  const { state, toggleBalanceVisibility } = useAppContext();
   const { monthlyIncome, monthlyExpenses, savingsRate } = useTransactions();
   const [activeTab, setActiveTab] = useState("overview");
-  const [showNotifications, setShowNotifications] = useState(false);
   const [progressValues, setProgressValues] = useState({
-    savings: 0,
-    health: 0,
+    savings: 567,
+    health: 546,
     budget: 0,
   });
 
@@ -41,7 +40,7 @@ export function DashboardOverview() {
           budget: 45,
         });
       }, 300);
-      return () => clearTimeout(timer);
+      return (): void => { clearTimeout(timer); };
     }
   }, [state.isLoading]);
 
@@ -58,7 +57,7 @@ export function DashboardOverview() {
     const interval = setInterval(() => {
       setCurrentTip((prev) => (prev + 1) % financialTips.length);
     }, 8000);
-    return () => clearInterval(interval);
+    return (): void => clearInterval(interval);
   }, [financialTips.length]);
 
   if (state.isLoading) {
@@ -90,52 +89,9 @@ export function DashboardOverview() {
   }
 
   return (
-    <div className="space-y-6" data-testid="dashboard-overview">
-      {/* Header with Notifications */}
-      <div className="flex items-center justify-between animate-slideInFromLeft">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900">Dashboard</h1>
-          <p className="text-slate-600">Welcome back! Here's your financial overview.</p>
-        </div>
-        <div className="flex items-center gap-3 animate-slideInFromRight">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="relative hover-scale"
-                  onClick={() => setShowNotifications(!showNotifications)}
-                  data-testid="notifications-button"
-                >
-                  <Bell className="h-5 w-5" />
-                  {state.notifications.length > 0 && (
-                    <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] text-white animate-pulse-custom">
-                      {state.notifications.length}
-                    </span>
-                  )}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Notifications</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <div className="text-right">
-            <p className="text-sm text-slate-500">Last updated</p>
-            <p className="text-sm font-medium">Just now</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Notification Center */}
-      {showNotifications && (
-        <NotificationCenter 
-          notifications={state.notifications} 
-          onClose={() => setShowNotifications(false)} 
-        />
-      )}
-
+    <div className="space-y-6 " data-testid="dashboard-overview">
+      <h4>Hello James 🖐️</h4>
+  Welcome back! Here's your financial overview.
       {/* Financial Tip Banner */}
       <div className="bg-gradient-to-r from-amber-50 to-yellow-100 border border-amber-200 rounded-lg p-3 flex items-center animate-fadeIn hover-lift">
         <div className="bg-amber-200 rounded-full p-2 mr-3 animate-bounce-custom">
@@ -391,7 +347,7 @@ export function DashboardOverview() {
         <TabsContent value="goals" className="space-y-6 mt-6">
           {/* Savings Goals */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {state.savingsGoals.map((goal, index) => (
+            {state.savingsGoals.map((goal) => (
               <SavingsGoalCard
                 key={goal.id}
                 title={goal.title}

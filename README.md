@@ -16,7 +16,7 @@ A modern, interactive personal finance management application built with Next.js
 - **Frontend**: Next.js 15, React 18, TypeScript
 - **Styling**: Tailwind CSS with custom animations
 - **State Management**: React Context API with useReducer
-- **Testing**: Jest, React Testing Library
+- **Testing**:Vitest, React Testing Library
 - **UI Components**: Radix UI primitives with custom styling
 - **Icons**: Lucide React
 

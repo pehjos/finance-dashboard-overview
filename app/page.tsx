@@ -46,7 +46,7 @@ const notificationState = {
 
   return (
   <SidebarProvider>
-    <div className="flex min-h-screen w-full bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="flex min-h-screen w-full md:bg-gradient-to-br from-slate-50 to-blue-50">
       <AppSidebar activeView={activeView} setActiveView={setActiveView} />
       <main className="flex flex-col flex-1">
         <AppHeader

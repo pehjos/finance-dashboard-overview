@@ -90,8 +90,8 @@ export function DashboardOverview(): React.ReactElement {
 
   return (
     <div className="space-y-6 " data-testid="dashboard-overview">
-      <h4 className="font-semibold text-[16px] text-[#1e293b]">Hello James 🖐️</h4>
-  Welcome back! Here's your financial overview.
+      <h4 className="font-semibold text-[20px] text-[#1e293b] h-1">Hello James 🖐️</h4>
+  <h6 className="text-[#1e293bb4]">Welcome back! Here's your financial overview.</h6>
       {/* Financial Tip Banner */}
       <div className="bg-gradient-to-r from-amber-50 to-yellow-100 border border-amber-200 rounded-lg p-3 flex items-center animate-fadeIn hover-lift">
         <div className="bg-amber-200 rounded-full p-2 mr-3 animate-bounce-custom">
